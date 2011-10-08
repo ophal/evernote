@@ -34,6 +34,7 @@ function page()
     if r:node_type() == [[element]] then
       if r:name() == [[Note]] then
         note = {src = r:read_outer_xml()}
+        -- Parse NNEX
         if note.src then
           s = xmlreader.from_string(note.src)
           s:read() -- skip container
