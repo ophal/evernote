@@ -22,18 +22,18 @@ function menu()
 end
 
 function page()
-  local xmlreader = require [[xmlreader]]
   local file = settings.evernote.file
   local note, r, s
   local ID = tonumber(arg(1) or [[]])
   local result = {}
 
+  -- Parse .nnex file
+  local xmlreader = require [[xmlreader]]
   r = assert(xmlreader.from_file(file))
   while r:read() do
     if r:node_type() == [[element]] then
       if r:name() == [[Note]] then
         note = {src = r:read_outer_xml()}
-        -- Parse NNEX
         if note.src then
           s = xmlreader.from_string(note.src)
           s:read() -- skip container
