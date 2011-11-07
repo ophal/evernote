@@ -63,10 +63,10 @@ function page()
         if ID == tonumber(note.id) then
           ID = tonumber(ID)
           page_set_title(note.Title)
-          return theme([[evernote]], {note, true})
+          return theme{[[evernote]], note, true}
         -- Notes list view
         else
-          table.insert(result, tonumber(note.id), theme([[evernote]], {note}))
+          table.insert(result, tonumber(note.id), theme{[[evernote]], note})
           r:next_node()
         end
       end
@@ -82,7 +82,7 @@ function theme.evernote(note, page)
 
   if not page then
     path = url(([[evernote/%d]]):format(note.id), true)
-    title = ([[<h2 class="title">%s</h2>]]):format(theme([[a]], {path, note.Title}))
+    title = ([[<h2 class="title">%s</h2>]]):format(theme{[[a]], path, note.Title})
   end
 
   return ([[
