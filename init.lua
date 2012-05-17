@@ -4,7 +4,7 @@ local require, io, assert, table = require, io, assert, table
 local theme, date, seawolf, arg, url = theme, os.date, seawolf, arg, url
 local settings, tonumber, print = settings, tonumber, print
 require [[seawolf.contrib]]
-local table_concat = seawolf.contrib.table_concat
+local table_concat, l = seawolf.contrib.table_concat, l
 local path_register_alias, page_set_title = path_register_alias, page_set_title
 
 module [[ophal.modules.evernote]]
@@ -81,8 +81,8 @@ function theme.evernote(note, page)
   local title, path = [[]]
 
   if not page then
-    path = url(([[evernote/%d]]):format(note.id), true)
-    title = ([[<h2 class="title">%s</h2>]]):format(theme{[[a]], path, note.Title})
+    path = url(([[evernote/%d]]):format(note.id))
+    title = ([[<h2 class="title">%s</h2>]]):format(l(note.Title, path))
   end
 
   return ([[
